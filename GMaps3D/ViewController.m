@@ -8,10 +8,6 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-@property (nonatomic,weak) GMSMapView *mapView;
-@end
-
 @implementation ViewController
 
 #pragma mark init
@@ -19,15 +15,14 @@
 {
     [super viewDidLoad];
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:46.550814 longitude:15.645118 zoom:21 bearing:30
+    _mapView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:46.550814 longitude:15.645118 zoom:18 bearing:90
                                                          viewingAngle:45];
     
-    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    _mapView.myLocationEnabled = YES;
+    _mapView.camera = camera;
     _mapView.delegate = self;
-    _mapView.mapType = kGMSTypeTerrain;
-    
-    self.view = _mapView;
+    _mapView.mapType = kGMSTypeNormal;
 }
 
 #pragma mark Google Map View delegates
