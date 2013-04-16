@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7868AF24171DDF7C005A8219 /* MapMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7868AF23171DDF7C005A8219 /* MapMenuView.m */; };
 		F183D2AE171D3C21007B2302 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AD171D3C21007B2302 /* UIKit.framework */; };
 		F183D2B0171D3C21007B2302 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AF171D3C21007B2302 /* Foundation.framework */; };
 		F183D2B2171D3C21007B2302 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2B1171D3C21007B2302 /* CoreGraphics.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7868AF22171DDF7C005A8219 /* MapMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapMenuView.h; sourceTree = "<group>"; };
+		7868AF23171DDF7C005A8219 /* MapMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapMenuView.m; sourceTree = "<group>"; };
 		F183D2AA171D3C21007B2302 /* GMaps3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMaps3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F183D2AD171D3C21007B2302 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F183D2AF171D3C21007B2302 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7868AF21171DDF5F005A8219 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				7868AF22171DDF7C005A8219 /* MapMenuView.h */,
+				7868AF23171DDF7C005A8219 /* MapMenuView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		F183D2A1171D3C21007B2302 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +152,7 @@
 		F183D2B3171D3C21007B2302 /* GMaps3D */ = {
 			isa = PBXGroup;
 			children = (
+				7868AF21171DDF5F005A8219 /* views */,
 				F183D2BC171D3C21007B2302 /* AppDelegate.h */,
 				F183D2BD171D3C21007B2302 /* AppDelegate.m */,
 				F183D2C5171D3C21007B2302 /* MainStoryboard_iPhone.storyboard */,
@@ -236,6 +249,7 @@
 				F183D2BA171D3C21007B2302 /* main.m in Sources */,
 				F183D2BE171D3C21007B2302 /* AppDelegate.m in Sources */,
 				F183D2CD171D3C21007B2302 /* ViewController.m in Sources */,
+				7868AF24171DDF7C005A8219 /* MapMenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +394,7 @@
 				F183D2D2171D3C21007B2302 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

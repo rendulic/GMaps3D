@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "MapMenuView.h"
 
 @interface ViewController : UIViewController <GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
