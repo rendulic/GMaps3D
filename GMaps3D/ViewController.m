@@ -17,7 +17,8 @@
 
 @implementation ViewController
 
-#pragma mark init
+#pragma mark init views
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,6 +43,7 @@
 }
 
 #pragma mark Google Map View delegates
+
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
     NSLog(@"Tapped at coordinate: %f - %f", coordinate.latitude, coordinate.longitude);
 }
@@ -50,7 +52,8 @@
     NSLog(@"Changed cam position");
 }
 
-#pragma Adapting views after orientation change
+#pragma mark Adapting views after orientation change
+
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     MapMenuView *mapMenuView = (MapMenuView *) [self.view viewWithTag:6661];
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
@@ -61,6 +64,7 @@
 }
 
 #pragma mark memory management functions
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
