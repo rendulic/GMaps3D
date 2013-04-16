@@ -14,15 +14,21 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        // background color (black with alpha)
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.65];
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = YES;
+        
         // info button
         UIButton *buttonInfo = [UIButton buttonWithType:UIButtonTypeInfoDark];
-        buttonInfo.frame = CGRectMake(0, 0, buttonWidth, buttonHeight);
+        buttonInfo.frame = CGRectMake(5, 0, buttonWidth, buttonHeight);
         [buttonInfo addTarget:self action:@selector(buttonInfoPressed) forControlEvents:UIControlEventTouchDown];
         [self addSubview:buttonInfo];
         
         // rounded rect button
-        UIButton *buttonContact = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        buttonContact.frame = CGRectMake(0, offsetButton, buttonWidth, buttonHeight);
+        UIButton *buttonContact = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        buttonContact.frame = CGRectMake(5, offsetButton, buttonWidth, buttonHeight);
         [buttonContact addTarget:self action:@selector(buttonAddContactPressed) forControlEvents:UIControlEventTouchDown];
         [self addSubview:buttonContact];
     }
@@ -31,11 +37,11 @@
 
 #pragma mark Button pressed handlers
 -(void) buttonAddContactPressed {
-    NSLog(@"Round button pressed");
+    UIAlertView *contactAlert = [[UIAlertView alloc] initWithTitle:@"Contact" message:@"igor@amplio.si" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [contactAlert show];
 }
 
 -(void) buttonInfoPressed {
-    NSLog(@"Info pressed");
     UIAlertView *infoAlert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Igor Rendulic, Amplio d.o.o., Slovenia" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [infoAlert show];
 }
@@ -45,8 +51,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    
 }
-*/
+ */
+
 
 @end
