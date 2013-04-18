@@ -20,7 +20,6 @@
 		F183D2C7171D3C21007B2302 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F183D2C5171D3C21007B2302 /* MainStoryboard_iPhone.storyboard */; };
 		F183D2CA171D3C21007B2302 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F183D2C8171D3C21007B2302 /* MainStoryboard_iPad.storyboard */; };
 		F183D2CD171D3C21007B2302 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F183D2CC171D3C21007B2302 /* ViewController.m */; };
-		F183D2D4171D47E7007B2302 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2D3171D47E7007B2302 /* GoogleMaps.framework */; };
 		F183D2D8171D484B007B2302 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F183D2D7171D484B007B2302 /* GoogleMaps.bundle */; };
 		F183D2DA171D486B007B2302 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2D9171D486B007B2302 /* AVFoundation.framework */; };
 		F183D2DC171D4874007B2302 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2DB171D4874007B2302 /* CoreData.framework */; };
@@ -56,7 +55,6 @@
 		F183D2C9171D3C21007B2302 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		F183D2CB171D3C21007B2302 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F183D2CC171D3C21007B2302 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F183D2D3171D47E7007B2302 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		F183D2D7171D484B007B2302 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		F183D2D9171D486B007B2302 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F183D2DB171D4874007B2302 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -92,7 +90,6 @@
 				F183D2AE171D3C21007B2302 /* UIKit.framework in Frameworks */,
 				F183D2B0171D3C21007B2302 /* Foundation.framework in Frameworks */,
 				F183D2B2171D3C21007B2302 /* CoreGraphics.framework in Frameworks */,
-				F183D2D4171D47E7007B2302 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +138,6 @@
 				F183D2DB171D4874007B2302 /* CoreData.framework */,
 				F183D2D9171D486B007B2302 /* AVFoundation.framework */,
 				F183D2D7171D484B007B2302 /* GoogleMaps.bundle */,
-				F183D2D3171D47E7007B2302 /* GoogleMaps.framework */,
 				F183D2AD171D3C21007B2302 /* UIKit.framework */,
 				F183D2AF171D3C21007B2302 /* Foundation.framework */,
 				F183D2B1171D3C21007B2302 /* CoreGraphics.framework */,
