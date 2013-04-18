@@ -1,7 +1,7 @@
 GMaps3D
 =======
 
-Google Maps SDK for iOS 6 with Storyboards
+Google Maps SDK for iOS 6 v1.2.0.2863 with Storyboards
 
 Reusable view
 --------------
