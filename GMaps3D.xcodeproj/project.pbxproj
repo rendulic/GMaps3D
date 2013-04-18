@@ -10,6 +10,7 @@
 		7868AF24171DDF7C005A8219 /* MapMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7868AF23171DDF7C005A8219 /* MapMenuView.m */; };
 		F1510068172022500041EDE5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1510067172022500041EDE5 /* GoogleMaps.framework */; };
 		F151006A172022760041EDE5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1510069172022760041EDE5 /* GoogleMaps.bundle */; };
+		F151006E172031AB0041EDE5 /* EmbeddedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F151006D172031AB0041EDE5 /* EmbeddedViewController.m */; };
 		F183D2AE171D3C21007B2302 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AD171D3C21007B2302 /* UIKit.framework */; };
 		F183D2B0171D3C21007B2302 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AF171D3C21007B2302 /* Foundation.framework */; };
 		F183D2B2171D3C21007B2302 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2B1171D3C21007B2302 /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 		7868AF23171DDF7C005A8219 /* MapMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapMenuView.m; sourceTree = "<group>"; };
 		F1510067172022500041EDE5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		F1510069172022760041EDE5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		F151006C172031AB0041EDE5 /* EmbeddedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmbeddedViewController.h; sourceTree = "<group>"; };
+		F151006D172031AB0041EDE5 /* EmbeddedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmbeddedViewController.m; sourceTree = "<group>"; };
 		F183D2AA171D3C21007B2302 /* GMaps3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMaps3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F183D2AD171D3C21007B2302 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F183D2AF171D3C21007B2302 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +111,17 @@
 			name = views;
 			sourceTree = "<group>";
 		};
+		F151006B172031910041EDE5 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F183D2CB171D3C21007B2302 /* ViewController.h */,
+				F183D2CC171D3C21007B2302 /* ViewController.m */,
+				F151006C172031AB0041EDE5 /* EmbeddedViewController.h */,
+				F151006D172031AB0041EDE5 /* EmbeddedViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
 		F183D2A1171D3C21007B2302 = {
 			isa = PBXGroup;
 			children = (
@@ -152,13 +166,12 @@
 		F183D2B3171D3C21007B2302 /* GMaps3D */ = {
 			isa = PBXGroup;
 			children = (
+				F151006B172031910041EDE5 /* controllers */,
 				7868AF21171DDF5F005A8219 /* views */,
 				F183D2BC171D3C21007B2302 /* AppDelegate.h */,
 				F183D2BD171D3C21007B2302 /* AppDelegate.m */,
 				F183D2C5171D3C21007B2302 /* MainStoryboard_iPhone.storyboard */,
 				F183D2C8171D3C21007B2302 /* MainStoryboard_iPad.storyboard */,
-				F183D2CB171D3C21007B2302 /* ViewController.h */,
-				F183D2CC171D3C21007B2302 /* ViewController.m */,
 				F183D2B4171D3C21007B2302 /* Supporting Files */,
 			);
 			path = GMaps3D;
@@ -250,6 +263,7 @@
 				F183D2BE171D3C21007B2302 /* AppDelegate.m in Sources */,
 				F183D2CD171D3C21007B2302 /* ViewController.m in Sources */,
 				7868AF24171DDF7C005A8219 /* MapMenuView.m in Sources */,
+				F151006E172031AB0041EDE5 /* EmbeddedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

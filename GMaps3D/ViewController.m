@@ -40,6 +40,14 @@
     MapMenuView *menuView = [[MapMenuView alloc] initWithFrame:CGRectMake( _mapView.frame.size.width - 50, 50, 60, 80)];
     menuView.tag = 6661; // unique tag for the view (needed after orientation change so the position can be modified)
     [self.view addSubview:menuView];
+    
+
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    _embeddedViewController = (EmbeddedViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"embeddeViewControllerID"];
+    
+    [self addChildViewController:_embeddedViewController];
+    [self.view addSubview:_embeddedViewController.view];
+    [self didMoveToParentViewController:self];
 }
 
 #pragma mark Google Map View delegates
