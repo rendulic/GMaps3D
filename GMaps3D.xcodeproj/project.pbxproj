@@ -11,6 +11,7 @@
 		F1510068172022500041EDE5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1510067172022500041EDE5 /* GoogleMaps.framework */; };
 		F151006A172022760041EDE5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1510069172022760041EDE5 /* GoogleMaps.bundle */; };
 		F151006E172031AB0041EDE5 /* EmbeddedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F151006D172031AB0041EDE5 /* EmbeddedViewController.m */; };
+		F1510071172047630041EDE5 /* EmbeddedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1510070172047630041EDE5 /* EmbeddedView.m */; };
 		F183D2AE171D3C21007B2302 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AD171D3C21007B2302 /* UIKit.framework */; };
 		F183D2B0171D3C21007B2302 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AF171D3C21007B2302 /* Foundation.framework */; };
 		F183D2B2171D3C21007B2302 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2B1171D3C21007B2302 /* CoreGraphics.framework */; };
@@ -44,6 +45,8 @@
 		F1510069172022760041EDE5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		F151006C172031AB0041EDE5 /* EmbeddedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmbeddedViewController.h; sourceTree = "<group>"; };
 		F151006D172031AB0041EDE5 /* EmbeddedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmbeddedViewController.m; sourceTree = "<group>"; };
+		F151006F172047630041EDE5 /* EmbeddedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmbeddedView.h; sourceTree = "<group>"; };
+		F1510070172047630041EDE5 /* EmbeddedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmbeddedView.m; sourceTree = "<group>"; };
 		F183D2AA171D3C21007B2302 /* GMaps3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMaps3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F183D2AD171D3C21007B2302 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F183D2AF171D3C21007B2302 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,6 +110,8 @@
 			children = (
 				7868AF22171DDF7C005A8219 /* MapMenuView.h */,
 				7868AF23171DDF7C005A8219 /* MapMenuView.m */,
+				F151006F172047630041EDE5 /* EmbeddedView.h */,
+				F1510070172047630041EDE5 /* EmbeddedView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				F183D2CD171D3C21007B2302 /* ViewController.m in Sources */,
 				7868AF24171DDF7C005A8219 /* MapMenuView.m in Sources */,
 				F151006E172031AB0041EDE5 /* EmbeddedViewController.m in Sources */,
+				F1510071172047630041EDE5 /* EmbeddedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
