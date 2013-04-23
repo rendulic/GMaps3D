@@ -43,21 +43,21 @@
     
 
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    _embeddedViewController = (EmbeddedViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"embeddeViewControllerID"];
+    _openGLController = (OpenGLController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"openGLController"];
     
-    [self addChildViewController:_embeddedViewController];
-    [self.view addSubview:_embeddedViewController.view];
+    [self addChildViewController:_openGLController];
+    [self.view addSubview:_openGLController.view];
     [self didMoveToParentViewController:self];
 }
 
 #pragma mark Google Map View delegates
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSLog(@"Tapped at coordinate: %f - %f", coordinate.latitude, coordinate.longitude);
+   // NSLog(@"Tapped at coordinate: %f - %f", coordinate.latitude, coordinate.longitude);
 }
 
 -(void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {
-    NSLog(@"Changed cam position");
+    //NSLog(@"Changed cam position");
 }
 
 #pragma mark Adapting views after orientation change
