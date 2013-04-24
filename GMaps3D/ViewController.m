@@ -26,7 +26,7 @@
     // setting up mapView
     _mapView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:46.550814 longitude:15.645118 zoom:18 bearing:90                                                          viewingAngle:65];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:46.550814 longitude:15.645118 zoom:18 bearing:0 viewingAngle:70];
     _mapView.camera = camera;
     _mapView.delegate = self;
     _mapView.mapType = kGMSTypeNormal;
@@ -53,7 +53,25 @@
 #pragma mark Google Map View delegates
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-   // NSLog(@"Tapped at coordinate: %f - %f", coordinate.latitude, coordinate.longitude);
+    /*CGPoint point = [mapView.projection pointForCoordinate:coordinate];
+    NSLog(@"POint: X:%f, Y:%f", point.x, point.y);
+    */
+    
+    CLLocationCoordinate2D A = CLLocationCoordinate2DMake(46.551400, 15.644536);
+    CLLocationCoordinate2D B = CLLocationCoordinate2DMake(46.551570, 15.644541);
+    CLLocationCoordinate2D C = CLLocationCoordinate2DMake(46.551574, 15.644799);
+    CLLocationCoordinate2D D = CLLocationCoordinate2DMake(46.551397, 15.644799);
+    
+    CGPoint Ap = [mapView.projection pointForCoordinate:A];
+    CGPoint Bp = [mapView.projection pointForCoordinate:B];
+    CGPoint Cp = [mapView.projection pointForCoordinate:C];
+    CGPoint Dp = [mapView.projection pointForCoordinate:D];
+    
+    NSLog(@"Ax:%f,Ay:%f", Ap.x,Ap.y);
+    NSLog(@"Bx:%f,By:%f", Bp.x,Bp.y);
+    NSLog(@"Cx:%f,Cy:%f", Cp.x,Cp.y);
+    NSLog(@"Dx:%f,Dy:%f", Dp.x,Dp.y);
+     
 }
 
 -(void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {

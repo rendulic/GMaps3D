@@ -30,13 +30,43 @@ typedef struct {
     float TexCoord[2];
 } Vertex;
 
+/*
+A -> X:46.551400, Y:15.644536
+B -> X:46.551570, Y:15.644541
+C -> X:46.551574, Y:15.644799
+D -> X:46.551397, Y:15.644799
+Ax:51.500008,Ay:130.125000
+Bx:52.437508,By:84.062500
+Cx:100.562500,Cy:82.937500
+Dx:100.562500,Dy:130.937500
+ 
+ {{D.x, D.y, square.zIndex}, {0, 0, 0, 1}, {0, 1}},
+ {{D.x, B.y, square.zIndex}, {0, 0, 0, 1}, {0, 0}},
+ {{B.x, B.y, square.zIndex}, {0, 0, 0, 1}, {1, 0}},
+ {{B.x, D.y, square.zIndex}, {0, 0, 0, 1}, {1, 1}}
+
+ 
+ 2013-04-24 00:30:16.519 GMaps3D[5887:c07] Ax:66.360283,Ay:170.254654
+ 2013-04-24 00:30:16.519 GMaps3D[5887:c07] Bx:70.714813,By:141.676971
+ 2013-04-24 00:30:16.520 GMaps3D[5887:c07] Cx:110.708260,Cy:141.006287
+ 2013-04-24 00:30:16.520 GMaps3D[5887:c07] Dx:108.667168,Dy:170.779129
+ */
+
 const Vertex Vertices[] = {
     // Front
-    {{100, 100, 1}, {0, 0, 0, 1}, {0, 1}},
-    {{100, 50, 1}, {0, 0, 0, 1}, {0, 0}},
-    {{50, 50, 1}, {0, 0, 0, 1}, {1, 0}},
-    {{50, 100, 1}, {0, 0, 0, 1}, {1, 1}}
+    {{108.667168, 170.779129, 1}, {0, 0, 0, 1}, {0, 1}},
+    {{110.708260, 141.006287, 1}, {0, 0, 0, 1}, {0, 0}},
+    {{70.714813, 141.676971, 1}, {0, 0, 0, 1}, {1, 0}},
+    {{66.360283, 170.254654, 1}, {0, 0, 0, 1}, {1, 1}}
 };
+
+/*const Vertex Vertices[] = {
+    {{1, -1, 0}, {1, 0, 0, 1}},
+    {{1, 1, 0}, {0, 1, 0, 1}},
+    {{-1, 1, 0}, {0, 0, 1, 1}},
+    {{-1, -1, 0}, {0, 0, 0, 1}}
+};
+ */
 
 const GLubyte Indices[] = {
     // Front
@@ -68,7 +98,7 @@ const GLubyte Indices[] = {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    
+        
     [_effect prepareToDraw];
     
     glBindVertexArrayOES(_vertexArray);
@@ -78,11 +108,18 @@ const GLubyte Indices[] = {
     glBindTexture(GL_TEXTURE_2D, _texture);
     
     glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
+   
+    NSLog(@"test");
 }
 
 - (void)update {
     GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, _glView.frame.size.width,_glView.frame.size.height,0, -1, 1);
     _effect.transform.projectionMatrix = projectionMatrix;
+    
+    /*GLKMatrix4 viewMatrix = GLKMatrix4MakeLookAt(0, -3, 5, 0, 0, 0, 0, 7, 0);
+    _effect.transform.modelviewMatrix = viewMatrix;
+    _effect.transform.projectionMatrix = GLKMatrix4MakePerspective(0.125*M_TAU, 1.0, -1, 2);
+     */
 }
 
 - (void)render:(CADisplayLink*)displayLink {
@@ -92,7 +129,9 @@ const GLubyte Indices[] = {
 #pragma mark setup and tearDown methods
 
 -(void)setupGL {
-    EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    // using the existent context of Google Maps SDK
+    EAGLContext *context = [EAGLContext currentContext];
+    
     _glView.context = context;
     _glView.delegate = self;
     
@@ -100,15 +139,15 @@ const GLubyte Indices[] = {
         NSLog(@"Failed to create NSContext");
     }
     
+    
     _glView.drawableMultisample = GLKViewDrawableMultisample4X;
     _glView.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     _glView.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
     
-    [EAGLContext setCurrentContext:_glView.context];
     glEnable(GL_CULL_FACE);
     
     // init effect
-    self.effect = [[GLKBaseEffect alloc] init];
+    _effect = [[GLKBaseEffect alloc] init];
     
     // init textures
     NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -128,10 +167,11 @@ const GLubyte Indices[] = {
     _effect.texture2d0.enabled = true;
 
     // 60 frames per seconds call
-    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
+    /*CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [displayLink setFrameInterval:1/60];
-    
+    */
+     
     // prepare buffers
     glGenVertexArraysOES(1, &_vertexArray);
     glBindVertexArrayOES(_vertexArray);
@@ -158,13 +198,12 @@ const GLubyte Indices[] = {
 
 
 -(void)tearDownGL {
-    [EAGLContext setCurrentContext:_glView.context];
     
     glDeleteBuffers(1, &_vertexBuffer);
     glDeleteBuffers(1, &_indexBuffer);
     
     _effect = nil;
-
+     
 }
 
 #pragma mark texture loader
