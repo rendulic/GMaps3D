@@ -26,7 +26,7 @@
     // setting up mapView
     _mapView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:46.550814 longitude:15.645118 zoom:18 bearing:0 viewingAngle:70];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:46.550814 longitude:15.645118 zoom:18 bearing:0 viewingAngle:65];
     _mapView.camera = camera;
     _mapView.delegate = self;
     _mapView.mapType = kGMSTypeNormal;
