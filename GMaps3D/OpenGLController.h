@@ -13,6 +13,7 @@
 #import "GLSquare.h"
 #import "TextureManager.h"
 #import "ViewControllerDelegate.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface OpenGLController : GLKViewController <GLKViewControllerDelegate,ViewControllerDelegate>
 

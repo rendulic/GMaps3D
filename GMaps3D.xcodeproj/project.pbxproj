@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78352165173BF9D000AFAC2D /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78352164173BF9D000AFAC2D /* GoogleMaps.framework */; };
+		78352167173BF9FB00AFAC2D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78352166173BF9FB00AFAC2D /* GoogleMaps.bundle */; };
 		7868AF24171DDF7C005A8219 /* MapMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7868AF23171DDF7C005A8219 /* MapMenuView.m */; };
 		78816D77173853360013B574 /* GLSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 78816D76173853360013B574 /* GLSquare.m */; };
 		78816D7A173857A90013B574 /* hq.png in Resources */ = {isa = PBXBuildFile; fileRef = 78816D79173857A90013B574 /* hq.png */; };
 		78816D7F173859200013B574 /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78816D7E173859200013B574 /* TextureManager.m */; };
 		78A09C0F17270D9700208AC4 /* barrack.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A09C0E17270D9700208AC4 /* barrack.png */; };
 		78ADF89A1726FC4100D044F3 /* OpenGLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADF8991726FC4100D044F3 /* OpenGLController.m */; };
-		F1510068172022500041EDE5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1510067172022500041EDE5 /* GoogleMaps.framework */; };
-		F151006A172022760041EDE5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1510069172022760041EDE5 /* GoogleMaps.bundle */; };
 		F183D2AE171D3C21007B2302 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AD171D3C21007B2302 /* UIKit.framework */; };
 		F183D2B0171D3C21007B2302 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2AF171D3C21007B2302 /* Foundation.framework */; };
 		F183D2B2171D3C21007B2302 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F183D2B1171D3C21007B2302 /* CoreGraphics.framework */; };
@@ -42,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78352164173BF9D000AFAC2D /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		78352166173BF9FB00AFAC2D /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		7868AF22171DDF7C005A8219 /* MapMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapMenuView.h; sourceTree = "<group>"; };
 		7868AF23171DDF7C005A8219 /* MapMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapMenuView.m; sourceTree = "<group>"; };
 		78816D75173853360013B574 /* GLSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSquare.h; sourceTree = "<group>"; };
@@ -54,8 +56,6 @@
 		78ADF8981726FC4100D044F3 /* OpenGLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLController.h; sourceTree = "<group>"; };
 		78ADF8991726FC4100D044F3 /* OpenGLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLController.m; sourceTree = "<group>"; };
 		78D59DFC1739846C00C0E5E1 /* ViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerDelegate.h; sourceTree = "<group>"; };
-		F1510067172022500041EDE5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		F1510069172022760041EDE5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		F183D2AA171D3C21007B2302 /* GMaps3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMaps3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F183D2AD171D3C21007B2302 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F183D2AF171D3C21007B2302 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,7 +107,7 @@
 				F183D2AE171D3C21007B2302 /* UIKit.framework in Frameworks */,
 				F183D2B0171D3C21007B2302 /* Foundation.framework in Frameworks */,
 				F183D2B2171D3C21007B2302 /* CoreGraphics.framework in Frameworks */,
-				F1510068172022500041EDE5 /* GoogleMaps.framework in Frameworks */,
+				78352165173BF9D000AFAC2D /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,8 +191,8 @@
 		F183D2AC171D3C21007B2302 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F1510069172022760041EDE5 /* GoogleMaps.bundle */,
-				F1510067172022500041EDE5 /* GoogleMaps.framework */,
+				78352166173BF9FB00AFAC2D /* GoogleMaps.bundle */,
+				78352164173BF9D000AFAC2D /* GoogleMaps.framework */,
 				F183D2EF171D48BA007B2302 /* SystemConfiguration.framework */,
 				F183D2ED171D48B4007B2302 /* QuartzCore.framework */,
 				F183D2EB171D48AE007B2302 /* OpenGLES.framework */,
@@ -300,9 +300,9 @@
 				F183D2C4171D3C21007B2302 /* Default-568h@2x.png in Resources */,
 				F183D2C7171D3C21007B2302 /* MainStoryboard_iPhone.storyboard in Resources */,
 				F183D2CA171D3C21007B2302 /* MainStoryboard_iPad.storyboard in Resources */,
-				F151006A172022760041EDE5 /* GoogleMaps.bundle in Resources */,
 				78A09C0F17270D9700208AC4 /* barrack.png in Resources */,
 				78816D7A173857A90013B574 /* hq.png in Resources */,
+				78352167173BF9FB00AFAC2D /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

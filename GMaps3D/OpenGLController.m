@@ -75,7 +75,10 @@ const GLubyte Indices[] = {
 #pragma mark init methods
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self setupGL];
+    EAGLContext *firstContext = [EAGLContext currentContext];
+    EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    [self setupGL:context];
+    [EAGLContext setCurrentContext:firstContext];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -87,7 +90,7 @@ const GLubyte Indices[] = {
 #pragma mark - OPEN GL METHODS
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    [self setupGL];
+    [self setupGL:_glView.context];
     [self update];
     
     glClearColor(0,0,0, 0.0);
@@ -109,7 +112,13 @@ const GLubyte Indices[] = {
     
     glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
     
-    glFlush();
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if(status != GL_FRAMEBUFFER_COMPLETE) {
+        
+        NSLog(@"failed to make complete framebuffer object %x", status);
+        
+    }
+    
 }
 
 - (void)update {
@@ -133,18 +142,15 @@ const GLubyte Indices[] = {
 
 #pragma mark setup and tearDown methods
 
--(void)setupGL {
+-(void)setupGL:(EAGLContext *)context {
     // using the existent context of Google Maps SDK
-    EAGLContext *firstContext = [EAGLContext currentContext];
     
-    _glView.context = firstContext;
+    _glView.context = context;
     _glView.delegate = self;
     
     if (!_glView.context) {
         NSLog(@"Failed to create NSContext");
     }
-    
-    glFlush();
     
     _glView.drawableMultisample = GLKViewDrawableMultisample4X;
     _glView.drawableDepthFormat = GLKViewDrawableDepthFormat16;
@@ -198,8 +204,6 @@ const GLubyte Indices[] = {
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, TexCoord));
     
     glBindVertexArrayOES(0);
-    
-        glFlush();
 }
 
 
