@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "MapMenuView.h"
+#import "GLSquare.h"
+#import "TextureManager.h"
+#import "ViewControllerDelegate.h"
 
-@interface OpenGLController : GLKViewController <GLKViewDelegate>
+@interface OpenGLController : GLKViewController <GLKViewControllerDelegate,ViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet GLKView *glView;
-
-
+@property (nonatomic, strong) NSArray *squares; // CG points for squares to be drawn
 
 @end

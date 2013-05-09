@@ -13,11 +13,53 @@
 @property CGRect landscapeRect;
 @property CGRect portraitRect;
 
+@property (nonatomic,retain) NSMutableArray *glSquares;
+
 @end
 
 @implementation ViewController
 
+@synthesize viewControllerDelegate;
+
 #pragma mark init views
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void) convertMapCoordinatesToCGCoordinates {
+    // TODO: manual data load
+    /*
+     +-------------+--------------+-------------+--------------+-------------+--------------+-------------+--------------+
+     | coord_lat_a | coord_long_a | coord_lat_b | coord_long_b | coord_lat_c | coord_long_c | coord_lat_d | coord_long_d |
+     +-------------+--------------+-------------+--------------+-------------+--------------+-------------+--------------+
+     |     48.1950 |      16.4040 |     48.1960 |      16.4040 |     48.1960 |      16.4050 |     48.1950 |      16.4050 |
+     |     48.1940 |      16.4040 |     48.1950 |      16.4040 |     48.1950 |      16.4050 |     48.1940 |      16.4050 |
+     |     48.1930 |      16.4040 |     48.1940 |      16.4040 |     48.1940 |      16.4050 |     48.1930 |      16.4050 |
+     |     48.1920 |      16.4040 |     48.1930 |      16.4040 |     48.1930 |      16.4050 |     48.1920 |      16.4050 |
+     |     48.1940 |      16.4050 |     48.1950 |      16.4050 |     48.1950 |      16.4060 |     48.1940 |      16.4060 |
+     |     48.1950 |      16.4050 |     48.1960 |      16.4050 |     48.1960 |      16.4060 |     48.1950 |      16.4060 |
+     |     48.1950 |      16.4030 |     48.1960 |      16.4030 |     48.1960 |      16.4040 |     48.1950 |      16.4040 |
+     +-------------+--------------+-------------+--------------+-------------+--------------+-------------+--------------+
+     */
+    
+    GLSquare *square = [[GLSquare alloc] init];
+    square.A = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1950, 16.4040)];
+    square.B = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1960, 16.4040)];
+    square.C = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1960, 16.4050)];
+    square.D = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1950, 16.4050)];
+    square.texture = [[TextureManager sharedTextureManager] getTexture:TEXTURE_BARRACK];
+    [_glSquares addObject:square];
+    
+    GLSquare *squareHq = [[GLSquare alloc] init];
+    squareHq.A = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1940, 16.4040)];
+    squareHq.B = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1950, 16.4040)];
+    squareHq.C = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1950, 16.4050)];
+    squareHq.D = [_mapView.projection pointForCoordinate:CLLocationCoordinate2DMake(48.1940, 16.4050)];
+    squareHq.texture = [[TextureManager sharedTextureManager] getTexture:TEXTURE_HQ];
+    [_glSquares addObject:squareHq];
+
+}
 
 - (void)viewDidLoad
 {
@@ -30,6 +72,10 @@
     _mapView.camera = camera;
     _mapView.delegate = self;
     _mapView.mapType = kGMSTypeNormal;
+    _mapView.settings.compassButton = YES;
+    _mapView.settings.myLocationButton = YES;
+    
+    _mapView.settings.zoomGestures = YES;
     
     // defining landscape size and portrait size on the map view
     _portraitRect = CGRectMake(0, 0, _mapView.frame.size.width, _mapView.frame.size.height);
@@ -45,9 +91,14 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     _openGLController = (OpenGLController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"openGLController"];
     
+    [_openGLController setPreferredFramesPerSecond:30];
+    
     [self addChildViewController:_openGLController];
     [self.view addSubview:_openGLController.view];
     [self didMoveToParentViewController:self];
+    
+    // set delegate for openGL redraw
+    [self setViewControllerDelegate:_openGLController];
 }
 
 #pragma mark Google Map View delegates
@@ -71,11 +122,23 @@
     NSLog(@"Bx:%f,By:%f", Bp.x,Bp.y);
     NSLog(@"Cx:%f,Cy:%f", Cp.x,Cp.y);
     NSLog(@"Dx:%f,Dy:%f", Dp.x,Dp.y);
-     
+    
+}
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 -(void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {
     //NSLog(@"Changed cam position");
+    if (viewControllerDelegate != nil && [viewControllerDelegate respondsToSelector:@selector(updatedSquarePositions:squares:)]) {
+        [viewControllerDelegate updatedSquarePositions:self squares:[[NSArray alloc] init]];
+    }
 }
 
 #pragma mark Adapting views after orientation change

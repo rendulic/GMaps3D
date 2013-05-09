@@ -14,16 +14,13 @@
 @property GLuint indexBuffer;
 @property GLuint vertexArray;
 
-@property GLuint texture;
-
-@property (strong, nonatomic) GLKBaseEffect *effect;
+@property (nonatomic, strong) GLKBaseEffect *effect;
 
 @end
 
 @implementation OpenGLController
 
 #pragma mark openGL structures
-#pragma mark - OPEN GL METHODS
 typedef struct {
     float Position[3];
     float Color[4];
@@ -87,10 +84,11 @@ const GLubyte Indices[] = {
     [self tearDownGL];
 }
 
-#pragma mark drawing
+#pragma mark - OPEN GL METHODS
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-   [self update];
+    [self setupGL];
+    [self update];
     
     glClearColor(0,0,0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -98,6 +96,8 @@ const GLubyte Indices[] = {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    glFlush();
         
     [_effect prepareToDraw];
     
@@ -105,11 +105,11 @@ const GLubyte Indices[] = {
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
     
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, _texture);
+    glBindTexture(GL_TEXTURE_2D, [[TextureManager sharedTextureManager] getTexture:TEXTURE_BARRACK]);
     
     glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
-   
-    NSLog(@"test");
+    
+    glFlush();
 }
 
 - (void)update {
@@ -122,6 +122,11 @@ const GLubyte Indices[] = {
      */
 }
 
+- (void) glkViewControllerUpdate:(GLKViewController *)controller {
+    NSLog(@"UPDATE!");
+}
+
+
 - (void)render:(CADisplayLink*)displayLink {
     [_glView display];
 }
@@ -130,15 +135,16 @@ const GLubyte Indices[] = {
 
 -(void)setupGL {
     // using the existent context of Google Maps SDK
-    EAGLContext *context = [EAGLContext currentContext];
+    EAGLContext *firstContext = [EAGLContext currentContext];
     
-    _glView.context = context;
+    _glView.context = firstContext;
     _glView.delegate = self;
     
     if (!_glView.context) {
         NSLog(@"Failed to create NSContext");
     }
     
+    glFlush();
     
     _glView.drawableMultisample = GLKViewDrawableMultisample4X;
     _glView.drawableDepthFormat = GLKViewDrawableDepthFormat16;
@@ -165,6 +171,7 @@ const GLubyte Indices[] = {
     
     _effect.texture2d0.name = info.name;
     _effect.texture2d0.enabled = true;
+     
 
     // 60 frames per seconds call
     /*CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
@@ -192,8 +199,7 @@ const GLubyte Indices[] = {
     
     glBindVertexArrayOES(0);
     
-    //load textures
-    _texture = [self loadTexture:@"barrack.png"];
+        glFlush();
 }
 
 
@@ -206,41 +212,11 @@ const GLubyte Indices[] = {
      
 }
 
-#pragma mark texture loader
-- (GLuint)loadTexture:(NSString *)fileName {
-    // 1
-    CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
-    if (!spriteImage) {
-        NSLog(@"Failed to load image %@", fileName);
-        exit(1);
-    }
-    
-    // 2
-    size_t width = CGImageGetWidth(spriteImage);
-    size_t height = CGImageGetHeight(spriteImage);
-    
-    GLubyte * spriteData = (GLubyte *) calloc(width*height*4, sizeof(GLubyte));
-    
-    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
-                                                       CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
-    
-    // 3
-    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), spriteImage);
-    
-    CGContextRelease(spriteContext);
-    
-    // 4
-    GLuint texName;
-    glGenTextures(1, &texName);
-    glBindTexture(GL_TEXTURE_2D, texName);
-    
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
-    
-    free(spriteData);
-    return texName;
-}
+#pragma mark Delegate implementation
 
+-(void)updatedSquarePositions:(ViewController *)viewController squares:(NSArray *)squares {
+    _squares = squares;
+    [_glView setNeedsDisplay];
+}
 
 @end
